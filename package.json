@@ -10,6 +10,12 @@
     "start": "node_modules/.bin/webpack serve --config webpack.config.js --open"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.5",
     "cesium": "^1.93.0",
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.7.1",
@@ -20,5 +26,9 @@
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.9.0"
+  },
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   }
 }

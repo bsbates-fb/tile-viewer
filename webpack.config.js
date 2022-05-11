@@ -28,13 +28,21 @@ module.exports = {
     mainFiles: ['module', 'main', 'Cesium']
   },
   module: {
-    rules: [{
-      test: /\.css$/,
-      use: [ 'style-loader', 'css-loader' ]
-    }, {
-      test: /\.(png|gif|jpg|jpeg|svg|xml|json)$/,
-      use: [ 'url-loader' ]
-    }]
+    rules: [
+      {
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      },
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },
+      {
+        test: /\.(png|gif|jpg|jpeg|svg|xml|json)$/,
+        use: [ 'url-loader' ]
+      }
+    ]
   },
   plugins: [
     // Allow pulling envionment variables from .env file
