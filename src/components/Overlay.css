@@ -1,0 +1,60 @@
+.Overlay_root {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.Overlay_control_panel {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  border-right: 1px solid #E2E2E2;
+}
+
+.Overlay_expand_section {
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 12px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  cursor: pointer;
+}
+
+.Overlay_collapse_section {
+  padding: 12px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-left: 1px solid #E2E2E2;
+}
+
+.Overlay_control_panel_header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #E2E2E2;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.Overlay_control_panel_heading {
+  padding: 12px;
+}
+
+.Overlay_control_panel_body {
+  padding: 12px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.Overlay_load_button {
+  margin: 12px 0;
+  width: 100%;
+}

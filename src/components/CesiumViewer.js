@@ -1,10 +1,22 @@
-import { Ion, Viewer, createWorldTerrain, createOsmBuildings, Cartesian3, Math } from "cesium";
+import {
+  Ion,
+  Viewer,
+  createWorldTerrain,
+  Cartesian3,
+  Cesium3DTileset,
+  Math
+} from "cesium";
 import React from 'react';
 
+/**
+ * Props:
+ * - tileSetUrl: string
+ */
 export default class CesiumViewer extends React.Component {
   constructor(props) {
     super(props);
     this.containerRef = React.createRef();
+    this.tileSetPrimitive = null;
   }
 
   componentDidMount() {
@@ -17,9 +29,6 @@ export default class CesiumViewer extends React.Component {
       terrainProvider: createWorldTerrain()
     });
 
-    // Add Cesium OSM Buildings, a global 3D buildings layer.
-    viewer.scene.primitives.add(createOsmBuildings());
-
     // Fly the camera to San Francisco at the given longitude, latitude, and height.
     viewer.camera.flyTo({
       destination : Cartesian3.fromDegrees(-122.4175, 37.655, 400),
@@ -30,6 +39,21 @@ export default class CesiumViewer extends React.Component {
     });
 
     this.viewer = viewer;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // If the tile set url has changed, then update the scene
+    if ([this.props.tileSetUrl !== prevProps.tileSetUrl]) {
+      if (this.tileSetPrimitive && this.viewer) {
+        this.viewer.scene.primitives.remove(this.tileSetPrimitive);
+        this.tileSetPrimitive = null;
+      }
+      if (this.props.tileSetUrl && this.viewer) {
+        this.tileSetPrimitive = this.viewer.scene.primitives.add(new Cesium3DTileset({
+          url: this.props.tileSetUrl,
+        }));
+      }
+    }
   }
 
   render() {

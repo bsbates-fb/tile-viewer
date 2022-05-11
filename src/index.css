@@ -1,0 +1,46 @@
+html, body, #root, .cesiumContainer {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.full_width {
+  width: 100%;
+}
+
+/* Typography styles */
+html {
+  font-family: "SF Pro Text", system-ui, -apple-system, BlinkMacSystemFont, ".SFNSText-Regular", sans-serif;
+}
+
+.h1 {
+  font-size: 20px;
+}
+
+/* Input styles */
+label {
+  font-weight: bold;
+}
+
+input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 6px 8px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  margin-top: 2px;
+}
+
+button.primary {
+  font-size: 16px;
+  border: 0 none;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #03a5fc;
+  color: #FFFFFF;
+  box-sizing: border-box;
+}
