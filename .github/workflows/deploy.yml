@@ -66,13 +66,11 @@ jobs:
         echo ::set-output name=identifier::$(git rev-parse --short ${{ github.sha }})-16.x
         echo ::set-output name=distdir::$(git rev-parse --short ${{ github.sha }})-16.x-dist
 
-    # TODO: We'll likely have to do some post-processing of the build dir prior to upload to do things like adjust base path names,
-    # etc, for purposes of cache-busting as new builds are uploaded to the bucket.
-    # - name: Prep files 🔨
-    #   run: npm run aws_deploy
-    #   env:
-    #     IDENTIFIER: ${{ steps.vars.outputs.identifier }}
-    #     DISTDIR: ${{ steps.vars.outputs.distdir }}
+    - name: Prep files 🔨
+      run: npm run aws_deploy
+      env:
+        IDENTIFIER: ${{ steps.vars.outputs.identifier }}
+        DISTDIR: ${{ steps.vars.outputs.distdir }}
 
     - name: Copy new index file to S3 📤
       run: aws s3 cp dist/index.html s3://3dtileviewer/tileviewer/$IDENTIFIER-tileviewer.html --no-progress

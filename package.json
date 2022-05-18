@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "node_modules/.bin/webpack --config webpack.config.js",
+    "aws_deploy": "python3 scripts/aws_deploy.py",
     "start": "node_modules/.bin/webpack serve --config webpack.config.js --open"
   },
   "devDependencies": {
