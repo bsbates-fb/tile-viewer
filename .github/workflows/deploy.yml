@@ -73,13 +73,13 @@ jobs:
         DISTDIR: ${{ steps.vars.outputs.distdir }}
 
     - name: Copy new index file to S3 📤
-      run: aws s3 cp dist/index.html s3://3dtileviewer/tileviewer/$IDENTIFIER-tileviewer.html --no-progress
+      run: aws s3 cp $DISTDIR/index.html s3://3dtileviewer/tileviewer/$IDENTIFIER-tileviewer.html --no-progress
       env:
         IDENTIFIER: ${{ steps.vars.outputs.identifier }}
         DISTDIR: ${{ steps.vars.outputs.distdir }}
 
     - name: Copy new dist dir to S3 📤
-      run: aws s3 cp dist s3://3dtileviewer/tileviewer/$DISTDIR --recursive --no-progress
+      run: aws s3 cp $DISTDIR s3://3dtileviewer/tileviewer/$DISTDIR --recursive --no-progress
       env:
         IDENTIFIER: ${{ steps.vars.outputs.identifier }}
         DISTDIR: ${{ steps.vars.outputs.distdir }}
