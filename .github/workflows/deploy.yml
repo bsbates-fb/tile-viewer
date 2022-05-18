@@ -25,11 +25,16 @@ jobs:
       with:
         node-version: 16.14
 
+    - name: Setup vars 📋
+      id: vars
+      run: |
+        echo ::set-output name=distdir::$(git rev-parse --short ${{ github.sha }})-16.x-dist
+
     - name: Install 🎯
       run: yarn install
 
     - name: Build 🏃
-      run: yarn build
+      run: yarn build --env DIST_BASE_URL='${{ steps.vars.outputs.distdir }}'
       env:
         DIST_BASE_URL: ${{ steps.vars.outputs.distdir }}
     - name: Upload artifacts 📤
