@@ -30,7 +30,8 @@ jobs:
 
     - name: Build 🏃
       run: yarn build
-
+      env:
+        DIST_BASE_URL: ${{ steps.vars.outputs.distdir }}
     - name: Upload artifacts 📤
       uses: actions/upload-artifact@v2
       with:
@@ -86,4 +87,4 @@ jobs:
 
     - name: Deployment complete! 🚀
       run: |
-        echo "Your build is at: s3://3dtileviewer/tileviewer/${{ steps.vars.outputs.distdir }}/index.html"
+        echo "Your build is at: https://d5ximzqa49b6a.cloudfront.net/tileviewer/${{ steps.vars.outputs.distdir }}/index.html"
