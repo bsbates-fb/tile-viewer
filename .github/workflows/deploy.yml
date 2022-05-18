@@ -86,4 +86,4 @@ jobs:
 
     - name: Deployment complete! 🚀
       run: |
-        echo "Your build is at: s3://3dtileviewer/tileviewer/{{ steps.vars.outputs.distdir }}/index.html"
+        echo "Your build is at: s3://3dtileviewer/tileviewer/${{ steps.vars.outputs.distdir }}/index.html"
