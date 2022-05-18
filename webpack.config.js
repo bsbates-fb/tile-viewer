@@ -61,7 +61,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       // Define relative base path in cesium for loading assets
-      CESIUM_BASE_URL: JSON.stringify(process.env.CI ? '/' + env.DIST_BASE_URL : ""),
+      CESIUM_BASE_URL: JSON.stringify(env.CI ? '/' + env.DIST_BASE_URL : ""),
     }),
   ],
   mode: "development",

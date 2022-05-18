@@ -34,7 +34,7 @@ jobs:
       run: yarn install
 
     - name: Build 🏃
-      run: yarn build --env DIST_BASE_URL='${{ steps.vars.outputs.distdir }}'
+      run: node_modules/.bin/webpack --config webpack.config.js --env CI --env DIST_BASE_URL='${{ steps.vars.outputs.distdir }}'
       env:
         DIST_BASE_URL: ${{ steps.vars.outputs.distdir }}
     - name: Upload artifacts 📤
