@@ -7,9 +7,8 @@ const DotenvWebpackPlugin = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (env) => {
-  // Use env.<YOUR VARIABLE> here:
-  console.log("CI: ", env.CI); // 'local'
-  console.log("DIST_BASE_URL: ", env.DIST_BASE_URL); // true
+  console.log("CI: ", env.CI); // 'true'
+  console.log("DIST_BASE_URL: ", env.DIST_BASE_URL); // '<git-sha>-16.x-dist'
   return {
     context: __dirname,
     entry: {
