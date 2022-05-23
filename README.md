@@ -1,5 +1,7 @@
 # Tile Viewer
-A web application for viewing 3d map tiles, using CesiumJS.
+A web application for viewing 3d map tiles, using CesiumJS. The idea is that we can use 3D meshes that we might display on our VR headsets and instead make them available via 3D viewer on the web.
+
+This will enable several new workflows that we expect our 3D map tiles will require, such as QA pipelines for mesh verification of buildings/POIs, entrance location matching, ground truth verification, etc. 
 
 ## Installation
 This project uses yarn to manage dependencies. Install them with:
