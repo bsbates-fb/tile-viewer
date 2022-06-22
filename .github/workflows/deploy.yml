@@ -5,7 +5,7 @@ name: Deploy
 
 on:
   push:
-    branches: [ main, develop, cicd, '*staging*' ]
+    branches: [ main, develop, cicd, '*staging*', ion_access_token ]
 
 permissions:
   id-token: write # required to use OIDC authentication
