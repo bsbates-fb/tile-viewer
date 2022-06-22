@@ -9,16 +9,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = (env) => {
   console.log("CI: ", env.CI); // 'true'
   console.log("DIST_BASE_URL: ", env.DIST_BASE_URL); // '<git-sha>-16.x-dist'
+  console.log("ION_ACCESS_TOKEN: ", env.ION_ACCESS_TOKEN);
+
   return {
     context: __dirname,
     entry: {
-      app: "./src/index.js",
+      app: './src/index.js',
     },
     output: {
-      filename: "app.js",
-      path: path.resolve(__dirname, "dist"),
+      filename: 'app.js',
+      path: path.resolve(__dirname, 'dist'),
       // Needed to compile multiline strings in Cesium
-      sourcePrefix: "",
+      sourcePrefix: '',
     },
     amd: {
       // Enable webpack-friendly use of require in Cesium
@@ -28,22 +30,22 @@ module.exports = (env) => {
       alias: {
         cesium: path.resolve(__dirname, cesiumSource),
       },
-      mainFiles: ["module", "main", "Cesium"],
+      mainFiles: ['module', 'main', 'Cesium'],
     },
     module: {
       rules: [
         {
           test: /\.(js)$/,
           exclude: /node_modules/,
-          use: ["babel-loader"],
+          use: ['babel-loader'],
         },
         {
           test: /\.css$/,
-          use: ["style-loader", "css-loader"],
+          use: ['style-loader', 'css-loader'],
         },
         {
           test: /\.(png|gif|jpg|jpeg|svg|xml|json)$/,
-          use: ["url-loader"],
+          use: ['url-loader'],
         },
       ],
     },
@@ -52,23 +54,26 @@ module.exports = (env) => {
       new DotenvWebpackPlugin(),
       // Copy over index.html template into dist directory with the proper includes
       new HtmlWebpackPlugin({
-        template: "src/index.html",
+        template: 'src/index.html',
       }),
       // Copy Cesium Assets, Widgets, and Workers to a static directory
       new CopyWebpackPlugin({
         patterns: [
-          { from: path.join(cesiumSource, cesiumWorkers), to: "Workers" },
-          { from: path.join(cesiumSource, "Assets"), to: "Assets" },
-          { from: path.join(cesiumSource, "Widgets"), to: "Widgets" },
+          { from: path.join(cesiumSource, cesiumWorkers), to: 'Workers' },
+          { from: path.join(cesiumSource, 'Assets'), to: 'Assets' },
+          { from: path.join(cesiumSource, 'Widgets'), to: 'Widgets' },
         ],
       }),
       new webpack.DefinePlugin({
         // Define relative base path in cesium for loading assets
         CESIUM_BASE_URL: JSON.stringify(
-          env.CI ? `/tileviewer/${env.DIST_BASE_URL}/` : ""
+          env.CI ? `/tileviewer/${env.DIST_BASE_URL}/` : ''
+        ),
+        ION_ACCESS_TOKEN: JSON.stringify(
+          env.CI ? `/tileviewer/${env.ION_ACCESS_TOKEN}/` : ''
         ),
       }),
     ],
-    mode: "development",
+    mode: 'development',
   };
 }
